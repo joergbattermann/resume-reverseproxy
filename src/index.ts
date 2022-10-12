@@ -20,16 +20,18 @@ export default {
 			const { pathname }  = new URL(request.url)
 			const { searchParams } = new URL(request.url)
 			
-			const requestUrl = new URL(standardResumeUrl + pathname)
+			console.log("Received request for '" + request.url + "' with an extracted 'pathname' value of '" + pathname + "' and a 'searchParams' value of '" + searchParams.toString() +"'");
+
+			const reverseProxiedRequestUrl = new URL(standardResumeUrl + pathname)
 			
 			if(!!searchParams){
 				for (let searchParam of searchParams) {
-					requestUrl.searchParams.set(searchParam[0], searchParam[1])
+					reverseProxiedRequestUrl.searchParams.set(searchParam[0], searchParam[1])
 				}
 			}
 
-			console.log("Fetching and return data from '" + requestUrl.toString() + "'");
+			console.log("Fetching and returning data from '" + reverseProxiedRequestUrl.toString() + "'");
 
-			return await fetch(requestUrl.toString())
+			return await fetch(reverseProxiedRequestUrl.toString())
 	},
 };
