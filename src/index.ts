@@ -34,6 +34,9 @@ export default {
 			else if (pathname === '/icons/favicon.ico'){
 				reverseProxiedRequestUrlString = faviconUrl
 			}
+			else if (pathname.startsWith('')){
+				return new Response(null, { status: 404, })
+			}
 			else {
 				reverseProxiedRequestUrlString = standardResumeBaseUrl + pathname
 			}
