@@ -1,4 +1,7 @@
-const standardResumeUrl = 'https://standardresume.co/r/joergbattermann'
+const standardResumeBaseUrl = 'https://standardresume.co'
+const standardResumePathname = '/r/joergbattermann'
+
+const standardResumeUrl = standardResumeBaseUrl + standardResumePathname
 
 export interface Env {
 	// Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
@@ -22,7 +25,16 @@ export default {
 			
 			console.log("Received request for '" + request.url + "' with an extracted 'pathname' value of '" + pathname + "' and a 'searchParams' value of '" + searchParams.toString() +"'");
 
-			const reverseProxiedRequestUrl = new URL(standardResumeUrl + pathname)
+			let reverseProxiedRequestUrlString = ''
+
+			if(!!pathname || pathname != '/') {
+				reverseProxiedRequestUrlString = standardResumeUrl
+			}
+			else {
+				reverseProxiedRequestUrlString = standardResumeBaseUrl + pathname
+			}
+
+			const reverseProxiedRequestUrl = new URL(reverseProxiedRequestUrlString)
 			
 			if(!!searchParams){
 				for (let searchParam of searchParams) {
