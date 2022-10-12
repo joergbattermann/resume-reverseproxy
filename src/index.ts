@@ -26,7 +26,7 @@ export default {
 
 			let reverseProxiedRequestUrlString = ''
 
-			if(!!pathname || pathname === '/') {
+			if(!(!!pathname) || pathname === '/') {
 				reverseProxiedRequestUrlString = standardResumeUrl
 			}
 			else {
