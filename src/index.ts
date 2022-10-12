@@ -20,13 +20,15 @@ export default {
 			const { pathname }  = new URL(request.url)
 			const { searchParams } = new URL(request.url)
 			
-			var requestUrl = new URL(standardResumeUrl + pathname)
+			const requestUrl = new URL(standardResumeUrl + pathname)
 			
 			if(!!searchParams){
 				for (let searchParam of searchParams) {
 					requestUrl.searchParams.set(searchParam[0], searchParam[1])
 				}
 			}
+
+			console.log("Fetching and return data from '" + requestUrl.toString() + "'");
 
 			return await fetch(requestUrl.toString())
 	},
