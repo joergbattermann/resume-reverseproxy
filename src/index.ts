@@ -2,6 +2,8 @@ const standardResumeBaseUrl = 'https://standardresume.co'
 const standardResumePathname = '/r/joergbattermann'
 const standardResumeUrl = standardResumeBaseUrl + standardResumePathname
 
+const faviconUrl = 'https://joergbattermann.com/img/favicon.ico'
+
 export interface Env {
 	// Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
 	// MY_KV_NAMESPACE: KVNamespace;
@@ -28,6 +30,9 @@ export default {
 
 			if(!(!!pathname) || pathname === '/') {
 				reverseProxiedRequestUrlString = standardResumeUrl
+			}
+			else if (pathname === '/icons/favicon.ico'){
+				reverseProxiedRequestUrlString = faviconUrl
 			}
 			else {
 				reverseProxiedRequestUrlString = standardResumeBaseUrl + pathname
