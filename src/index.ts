@@ -1,6 +1,5 @@
 const standardResumeBaseUrl = 'https://standardresume.co'
 const standardResumePathname = '/r/joergbattermann'
-
 const standardResumeUrl = standardResumeBaseUrl + standardResumePathname
 
 export interface Env {
@@ -27,7 +26,7 @@ export default {
 
 			let reverseProxiedRequestUrlString = ''
 
-			if(!!pathname || pathname != '/') {
+			if(!!pathname || pathname === '/') {
 				reverseProxiedRequestUrlString = standardResumeUrl
 			}
 			else {
