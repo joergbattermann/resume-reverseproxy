@@ -53,25 +53,26 @@ export default {
 
 		console.log("Fetching data from '" + reverseProxiedRequestUrl.toString() + "'");
 
-		let proxiedResponse = await fetch(reverseProxiedRequestUrl.toString())
+		return await fetch(reverseProxiedRequestUrl.toString())
 
-		if (isMainResumeUrl) {
-			console.log("Returning response from main site with adjustments applied")
 
-			return new HTMLRewriter()
-				.on('nav.css-1si0cz4', new ElemnentRemover())
-				.transform(proxiedResponse)
-		}
-		else {
-			console.log("Returning response from main site as-is")
+		// if (isMainResumeUrl) {
+		// 	console.log("Returning response from main site with adjustments applied")
 
-			return proxiedResponse;
-		}
+		// 	return new HTMLRewriter()
+		// 		.on('nav.css-1si0cz4', new ElemnentRemover())
+		// 		.transform(proxiedResponse)
+		// }
+		// else {
+		// 	console.log("Returning response from main site as-is")
+
+		// 	return proxiedResponse;
+		// }
 	},
 };
 
-class ElemnentRemover {
-	async element(element: Element) {
-		element?.remove();
-	}
-}
+// class ElemnentRemover {
+// 	async element(element: Element) {
+// 		element?.remove();
+// 	}
+// }
