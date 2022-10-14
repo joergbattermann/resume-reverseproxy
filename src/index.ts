@@ -56,10 +56,10 @@ export default {
 		let proxiedResponse = await fetch(reverseProxiedRequestUrl.toString())
 
 		if (isMainResumeUrl) {
-			console.log("Returning response from main resume site with adjustments applied")
+			console.log("Returning response from main site with adjustments applied")
 
 			return new HTMLRewriter()
-				.on('nav', new StandardResumeFooterRemover())
+				.on('nav.css-1si0cz4', new ElemnentRemover())
 				.transform(proxiedResponse)
 		}
 		else {
@@ -70,17 +70,8 @@ export default {
 	},
 };
 
-class StandardResumeFooterRemover {
-	element(element: Element) {
-		if(!(!!!element)){
-			console.log("Removing footer element from StandardResume response")
-			console.log(element.tagName)
-			element.setInnerContent('<p>Hello!</p>')
-		}
-		else {
-			console.log("No footer element from StandardResume response supplied for removal")
-		}
-
-		element.append('<a href="https://standardresume.co/terms-of-use" class="css-1cjs9sfsfo">Termsssssss</a>')
+class ElemnentRemover {
+	async element(element: Element) {
+		element?.remove();
 	}
 }
