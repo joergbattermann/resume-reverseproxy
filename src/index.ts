@@ -74,7 +74,7 @@ class StandardResumeFooterRemover {
 	element(element: Element) {
 		if(!(!!!element)){
 			console.log("Removing footer element from StandardResume response")
-			console.log(element)
+			console.log(element.tagName)
 			element.setInnerContent('<p>Hello!</p>')
 		}
 		else {
