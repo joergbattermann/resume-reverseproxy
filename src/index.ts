@@ -51,7 +51,7 @@ export default {
 			}
 		}
 
-		console.log("Fetching and returning data from '" + reverseProxiedRequestUrl.toString() + "'");
+		console.log("Fetching data from '" + reverseProxiedRequestUrl.toString() + "'");
 
 		let proxiedResponse = await fetch(reverseProxiedRequestUrl.toString())
 
@@ -72,7 +72,6 @@ export default {
 
 class StandardResumeFooterRemover {
 	element(element: Element) {
-
 		if(!(!!!element)){
 			console.log("Removing footer element from StandardResume response")
 			element.remove()
@@ -80,5 +79,7 @@ class StandardResumeFooterRemover {
 		else {
 			console.log("No footer element from StandardResume response supplied for removal")
 		}
+
+		element.append('<a href="https://standardresume.co/terms-of-use" class="css-1cjs9sfsfo">Termsssssss</a>')
 	}
 }
