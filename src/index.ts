@@ -59,7 +59,7 @@ export default {
 			console.log("Returning response from main resume site with adjustments applied")
 
 			return new HTMLRewriter()
-				.on('nav.css-1si0cz4', new StandardResumeFooterRemover())
+				.on('nav', new StandardResumeFooterRemover())
 				.transform(proxiedResponse)
 		}
 		else {
@@ -74,7 +74,7 @@ class StandardResumeFooterRemover {
 	element(element: Element) {
 		if(!(!!!element)){
 			console.log("Removing footer element from StandardResume response")
-			element.remove()
+			element.setInnerContent('<p>Hello!</p>')
 		}
 		else {
 			console.log("No footer element from StandardResume response supplied for removal")
