@@ -56,12 +56,12 @@ export default {
 		let proxiedResponse = await fetch(reverseProxiedRequestUrl.toString())
 
 		if (isMainResumeUrl) {
-			return proxiedResponse;
-		}
-		else {
 			return new HTMLRewriter()
 				.on('nav.css-1si0cz4', new StandardResumeFooterRemover())
 				.transform(proxiedResponse);
+		}
+		else {
+			return proxiedResponse;
 		}
 	},
 };
