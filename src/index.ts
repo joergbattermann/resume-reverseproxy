@@ -56,22 +56,29 @@ export default {
 		let proxiedResponse = await fetch(reverseProxiedRequestUrl.toString())
 
 		if (isMainResumeUrl) {
-			console.log("Returning response from main resume site with adjustments applied");
+			console.log("Returning response from main resume site with adjustments applied")
 
 			return new HTMLRewriter()
 				.on('nav.css-1si0cz4', new StandardResumeFooterRemover())
-				.transform(proxiedResponse);
+				.transform(proxiedResponse)
 		}
 		else {
-			console.log("Returning response from main site as-is");
+			console.log("Returning response from main site as-is")
 
 			return proxiedResponse;
 		}
 	},
 };
 
-class StandardResumeFooterRemover implements HTMLRewriterElementContentHandlers {
-	element(element?: Element) {
-		element?.remove();
+class StandardResumeFooterRemover {
+	element(element: Element) {
+
+		if(!(!!!element)){
+			console.log("Removing footer element from StandardResume response")
+			element.remove()
+		}
+		else {
+			console.log("No footer element from StandardResume response supplied for removal")
+		}
 	}
 }
